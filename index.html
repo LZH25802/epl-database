@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="zh-CN" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>英超球员数据资料库 | Premier League Stats Database</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        epl: {
+                            purple: '#38003c',
+                            cyan: '#00ff85',
+                            pink: '#ff2882',
+                            dark: '#121214',
+                            card: '#1a1a1e'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Custom Styles -->
+    <link rel="stylesheet" href="./css/style.css">
+</head>
+<body class="bg-epl-dark text-gray-100 min-h-screen flex flex-col font-sans selection:bg-epl-cyan selection:text-epl-purple">
+
+    <!-- Header -->
+    <header class="bg-epl-purple border-b border-gray-800 sticky top-0 z-50 shadow-lg">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <div class="flex items-center space-x-3 cursor-pointer" onclick="app.switchTab('home')">
+                <div class="w-12 h-12 bg-epl-cyan rounded-xl flex items-center justify-center text-epl-purple font-black text-2xl shadow-glow">
+                    PL
+                </div>
+                <div>
+                    <h1 class="text-xl font-bold tracking-wider text-white">EPL STATS HUB</h1>
+                    <p class="text-xs text-epl-cyan uppercase tracking-widest font-semibold">Premier League Database 2026/27</p>
+                </div>
+            </div>
+            <!-- Navigation -->
+            <nav class="hidden md:flex space-x-1">
+                <button onclick="app.switchTab('home')" id="nav-home" class="nav-btn px-4 py-2 rounded-lg text-sm font-medium transition bg-white/10 text-epl-cyan">
+                    <i class="fa-solid fa-house mr-2"></i>首页总览
+                </button>
+                <button onclick="app.switchTab('players')" id="nav-players" class="nav-btn px-4 py-2 rounded-lg text-sm font-medium transition text-gray-300 hover:bg-white/5 hover:text-white">
+                    <i class="fa-solid fa-users mr-2"></i>球员资料库
+                </button>
+                <button onclick="app.switchTab('teams')" id="nav-teams" class="nav-btn px-4 py-2 rounded-lg text-sm font-medium transition text-gray-300 hover:bg-white/5 hover:text-white">
+                    <i class="fa-solid fa-shield-halved mr-2"></i>俱乐部巡礼
+                </button>
+                <button onclick="app.switchTab('stats')" id="nav-stats" class="nav-btn px-4 py-2 rounded-lg text-sm font-medium transition text-gray-300 hover:bg-white/5 hover:text-white">
+                    <i class="fa-solid fa-chart-column mr-2"></i>数据排行榜
+                </button>
+            </nav>
+            <!-- Mobile Menu Button -->
+            <div class="md:hidden">
+                <button onclick="app.toggleMobileMenu()" class="text-gray-300 hover:text-white focus:outline-none p-2">
+                    <i class="fa-solid fa-bars text-xl"></i>
+                </button>
+            </div>
+        </div>
+        <!-- Mobile Menu Dropdown -->
+        <div id="mobile-menu" class="hidden md:hidden bg-epl-purple border-t border-gray-800 px-4 pt-2 pb-4 space-y-2">
+            <button onclick="app.switchTab('home'); app.toggleMobileMenu();" class="block w-full text-left px-3 py-2 rounded-md text-base font-medium text-epl-cyan bg-white/10">首页总览</button>
+            <button onclick="app.switchTab('players'); app.toggleMobileMenu();" class="block w-full text-left px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:bg-white/5 hover:text-white">球员资料库</button>
+            <button onclick="app.switchTab('teams'); app.toggleMobileMenu();" class="block w-full text-left px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:bg-white/5 hover:text-white">俱乐部巡礼</button>
+            <button onclick="app.switchTab('stats'); app.toggleMobileMenu();" class="block w-full text-left px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:bg-white/5 hover:text-white">数据排行榜</button>
+        </div>
+    </header>
+
+    <!-- Main Content Container -->
+    <main class="flex-grow max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <!-- Dynamic Content Area -->
+        <div id="app-view"></div>
+    </main>
+
+    <!-- Player Detail Modal -->
+    <div id="player-modal" class="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm hidden">
+        <div id="modal-content" class="bg-epl-card border border-gray-800 rounded-2xl max-w-2xl w-full mx-4 overflow-hidden shadow-2xl transform transition-all">
+            <!-- Populated by JS -->
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-epl-card border-t border-gray-800 mt-16 py-8 text-center text-sm text-gray-400">
+        <div class="max-w-7xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-4">
+            <div class="flex items-center space-x-2">
+                <span class="w-8 h-8 bg-epl-cyan rounded-lg flex items-center justify-center text-epl-purple font-black text-sm">PL</span>
+                <span class="font-bold text-white">Premier League Player Database</span>
+            </div>
+            <p>&copy; 2026/27 EPL Stats Hub. All rights reserved. Data simulated for professional sports analytics.</p>
+        </div>
+    </footer>
+
+    <!-- Application JS -->
+    <script src="./js/app.js"></script>
+</body>
+</html>
